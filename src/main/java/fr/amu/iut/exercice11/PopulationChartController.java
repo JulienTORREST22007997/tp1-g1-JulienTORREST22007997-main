@@ -2,14 +2,11 @@ package fr.amu.iut.exercice11;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -24,15 +21,11 @@ import java.util.ResourceBundle;
 
 
 public class PopulationChartController implements Initializable {
-
     @FXML
     private BarChart<String, Number> chart;
 
     @FXML
     private CategoryAxis xAxis;
-
-    @FXML
-    private NumberAxis yAxis;
 
     @FXML
     private VBox textFieldsContainer;
@@ -48,10 +41,6 @@ public class PopulationChartController implements Initializable {
     }
 
     @FXML
-    private void addTextField(ActionEvent event) {
-        addTextField();
-    }
-
     private void addTextField() {
         int textFieldCount = textFieldsContainer.getChildren().size();
         String label = "Date " + (textFieldCount ) + "   ";
@@ -64,6 +53,7 @@ public class PopulationChartController implements Initializable {
         HBox textFieldBox = new HBox(new Text(label), textField);
         textFieldsContainer.getChildren().add(textFieldBox);
     }
+
 
     private void handleTextFieldKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
