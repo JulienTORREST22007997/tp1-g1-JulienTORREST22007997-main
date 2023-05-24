@@ -10,22 +10,23 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.exercice11.PopulationChartController">
+<VBox prefHeight="380.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.exercice11.PopulationChartController">
     <children>
-        <HBox alignment="TOP_RIGHT">
-            <Button fx:id="addButton" text="Ajouter" onAction="#addTextField"/>
-        </HBox>
         <HBox spacing="10">
             <BarChart fx:id="chart" title="Population Chart">
+
                 <xAxis>
                     <CategoryAxis fx:id="xAxis"/>
                 </xAxis>
                 <yAxis>
-                    <NumberAxis/>
+                    <NumberAxis fx:id="yAxis" label="Population" />
                 </yAxis>
             </BarChart>
-            <VBox spacing="10" fx:id="textFieldsContainer"/>
+            <VBox spacing="10" fx:id="textFieldsContainer">
+                <Button fx:id="addButton" text="Ajouter" onAction="#addTextField"/>
+
+            </VBox>
         </HBox>
-        <TextFlow fx:id="textFlow" prefHeight="150.0" prefWidth="300.0" />
+        <TextFlow fx:id="textFlow" prefHeight="150.0" prefWidth="150.0" />
     </children>
 </VBox>
