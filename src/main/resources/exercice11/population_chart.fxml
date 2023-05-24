@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.BarChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.BarChart?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-<VBox xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.exercice11.PopulationChartController">
+<VBox prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fr.amu.iut.exercice11.PopulationChartController">
     <children>
-        <BarChart fx:id="chart" title="Population Chart">
-            <xAxis>
-                <CategoryAxis fx:id="xAxis"/>
-            </xAxis>
-            <yAxis>
-                <NumberAxis/>
-            </yAxis>
-        </BarChart>
-
-        <HBox>
-            <TextField fx:id="dateField" promptText="Date"/>
-            <TextField fx:id="valueField" promptText="Value"/>
-            <Button text="Ajouter" onAction="#addData"/>
+        <HBox alignment="TOP_RIGHT">
+            <Button fx:id="addButton" text="Ajouter" onAction="#addTextField"/>
         </HBox>
+        <HBox spacing="10">
+            <BarChart fx:id="chart" title="Population Chart">
+                <xAxis>
+                    <CategoryAxis fx:id="xAxis"/>
+                </xAxis>
+                <yAxis>
+                    <NumberAxis/>
+                </yAxis>
+            </BarChart>
+            <VBox spacing="10" fx:id="textFieldsContainer"/>
+        </HBox>
+        <TextFlow fx:id="textFlow" prefHeight="150.0" prefWidth="300.0" />
     </children>
 </VBox>

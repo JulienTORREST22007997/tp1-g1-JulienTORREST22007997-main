@@ -8,6 +8,10 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class PopulationChartController {
     @FXML
@@ -15,14 +19,27 @@ public class PopulationChartController {
 
     @FXML
     private CategoryAxis xAxis;
-
     @FXML
-    private TextField dateField;
-
-    @FXML
-    private TextField valueField;
+    private TextFlow textFlow;
 
     private ObservableList<XYChart.Data<String, Number>> data;
+
+    @FXML
+    private VBox textFieldsContainer;
+
+    private int textFieldCounter = 1;
+
+    @FXML
+    private void addTextField(ActionEvent event) {
+        HBox textFieldBox = new HBox(10);
+        TextFlow textFieldTextFlow = new TextFlow(new Text("Date" + textFieldCounter + " "));
+        TextField textField = new TextField();
+
+        textFieldBox.getChildren().addAll(textFieldTextFlow, textField);
+        textFieldsContainer.getChildren().add(textFieldBox);
+
+        textFieldCounter++;
+    }
 
     public void initialize() {
         data = FXCollections.observableArrayList();
@@ -33,24 +50,4 @@ public class PopulationChartController {
         ));
     }
 
-    @FXML
-    private void addData(ActionEvent event) {
-        String date = dateField.getText();
-        String value = valueField.getText();
-
-        if (!date.isEmpty() && !value.isEmpty()) {
-            XYChart.Data<String, Number> newData = new XYChart.Data<>(date, Integer.parseInt(value));
-            int existingIndex = data.indexOf(newData);
-
-            if (existingIndex >= 0) {
-                data.set(existingIndex, newData);
-            } else {
-                data.add(newData);
-                xAxis.getCategories().add(date);
-            }
-
-            dateField.clear();
-            valueField.clear();
-        }
-    }
 }

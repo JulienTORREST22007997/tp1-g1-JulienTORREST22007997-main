@@ -10,7 +10,8 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("exercice11/population_chart.fxml"));
         primaryStage.setScene(new Scene(loader.load()));
-        primaryStage.setTitle("Population Chart");
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("Whale App");
         primaryStage.show();
     }
 
