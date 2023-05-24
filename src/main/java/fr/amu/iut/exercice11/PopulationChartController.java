@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 
 
 public class PopulationChartController implements Initializable {
+    // Déclaration des variables
     @FXML
     private BarChart<String, Number> chart;
 
@@ -36,17 +37,18 @@ public class PopulationChartController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         data = FXCollections.observableArrayList();
         chart.setData(FXCollections.singletonObservableList(new XYChart.Series<>("Population", data)));
-        xAxis.setLabel("Date");
-
     }
 
+    // Execution du bouton ajouter
     @FXML
     private void addTextField() {
         int textFieldCount = textFieldsContainer.getChildren().size();
         String label = "Date " + (textFieldCount ) + "   ";
         TextField textField = new TextField();
         textField.setMaxWidth(100);
-        textField.setTranslateY(-6); // J'ai rajouté ça car sinon le texte est légèrement trop haut par rapport au champs
+
+        // Pour que le champs de saisie soit bien aligné avec le texte on le monte de 6px
+        textField.setTranslateY(-6);
         textField.setPromptText("Valeur");
         textField.setOnKeyPressed(this::handleTextFieldKeyPress);
 
@@ -54,7 +56,7 @@ public class PopulationChartController implements Initializable {
         textFieldsContainer.getChildren().add(textFieldBox);
     }
 
-
+    // Récupération de la touche entrée
     private void handleTextFieldKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.ENTER) {
             TextField textField = (TextField) event.getSource();
@@ -72,6 +74,7 @@ public class PopulationChartController implements Initializable {
         }
     }
 
+    // Pour empêcher l'insertion de données non numérique
     private int parseValue(String value) {
         try {
             return Integer.parseInt(value);
@@ -80,6 +83,7 @@ public class PopulationChartController implements Initializable {
         }
     }
 
+    // Pour update le graphique et mettre à jour les éléments
     private void updateChartData(String date, int value) {
         XYChart.Data<String, Number> newData = new XYChart.Data<>(date, value);
         int existingIndex = data.indexOf(newData);
